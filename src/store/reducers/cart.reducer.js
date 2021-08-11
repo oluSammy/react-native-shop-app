@@ -1,5 +1,6 @@
 import CartItem from "../../model/cart-item";
 import { ADD_TO_CART, REMOVE_FROM_CART } from "../actions/cart.actions";
+import { ADD_ORDER } from "../actions/order.actions";
 
 const initState = {
   items: {},
@@ -42,7 +43,7 @@ export default (state = initState, action) => {
       }
     case REMOVE_FROM_CART:
       const selectedCartItem = state.items[action.id];
-      const currentQty = selectedCartItem.quantity
+      const currentQty = selectedCartItem.quantity;
 
       if (currentQty > 1) {
         // reduce it
@@ -70,6 +71,8 @@ export default (state = initState, action) => {
           totalAmount: state.totalAmount - selectedCartItem.productPrice,
         };
       }
+    case ADD_ORDER:
+      return initState;
     default:
       return state;
   }

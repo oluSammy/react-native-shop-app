@@ -49,6 +49,7 @@ const CartScreen = () => {
               quantity={itemData.item.quantity}
               title={itemData.item.productTitle}
               amount={itemData.item.productPrice}
+              deletable
             />
           )}
         />
