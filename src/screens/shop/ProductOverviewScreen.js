@@ -1,15 +1,32 @@
 import React from "react";
-import { FlatList, Text } from "react-native";
-import { useSelector } from "react-redux";
+import { FlatList, Platform } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
 import ProductItem from "../../components/shop/ProductItem.component";
-
-// image
-// title
-// price
-// onViewDetail
+import { addToCart } from "../../store/actions/cart.actions";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import CustomHeaderBtn from "../../components/UI/HeaderButton";
 
 const ProductOverviewScreen = ({ navigation, route }) => {
+  const dispatch = useDispatch();
   const products = useSelector((state) => state.products.availableProducts);
+  const isAndroid = Platform.OS === "android";
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={CustomHeaderBtn}>
+          <Item
+            title="save"
+            iconName={isAndroid ? "md-cart" : "ios-cart"}
+            onPress={() => {
+              navigation.navigate("Cart");
+            }}
+          />
+        </HeaderButtons>
+      ),
+    });
+  }, [navigation]);
+
   return (
     <FlatList
       data={products}
@@ -21,7 +38,9 @@ const ProductOverviewScreen = ({ navigation, route }) => {
           onViewDetail={() => {
             navigation.navigate("ProductDetail", { product: itemData.item });
           }}
-          onAddToCart={() => {}}
+          onAddToCart={() => {
+            dispatch(addToCart(itemData.item));
+          }}
         />
       )}
     />

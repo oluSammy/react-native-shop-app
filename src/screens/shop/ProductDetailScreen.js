@@ -8,9 +8,12 @@ import {
   ScrollView,
 } from "react-native";
 import colors from "../../constants/colors";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../../store/actions/cart.actions";
 
 const ProductDetailScreen = ({ route, navigation }) => {
   const { product } = route.params;
+  const dispatch = useDispatch();
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -26,7 +29,9 @@ const ProductDetailScreen = ({ route, navigation }) => {
           color={colors.primary}
           style={styles.addBtn}
           title="Add to cart"
-          onPress={() => {}}
+          onPress={() => {
+            dispatch(addToCart(product));
+          }}
         />
       </View>
       <Text style={styles.price}>{product.price.toFixed(2)}</Text>

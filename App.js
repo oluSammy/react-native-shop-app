@@ -7,11 +7,15 @@ import * as Font from "expo-font";
 import { enableScreens } from "react-native-screens";
 
 import productReducer from "./src/store/reducers/products.reducer";
+import cartReducer from "./src/store/reducers/cart.reducer";
+import orderReducer from "./src/store/reducers/order.reducer";
 
 enableScreens();
 
 const rootReducer = combineReducers({
   products: productReducer,
+  cart: cartReducer,
+  orders: orderReducer,
 });
 
 const store = createStore(rootReducer);
