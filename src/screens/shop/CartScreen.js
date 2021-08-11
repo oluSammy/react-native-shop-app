@@ -32,7 +32,7 @@ const CartScreen = () => {
         <Button
           title="Order Now"
           disabled={cartItems.length === 0}
-          onPress={() => dispatch(addOrder(cartTotal, cartItems))}
+          onPress={() => dispatch(addOrder(cartItems, cartTotal))}
         />
       </View>
       {/* <FlatList */}

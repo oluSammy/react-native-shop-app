@@ -24,6 +24,15 @@ const ProductOverviewScreen = ({ navigation, route }) => {
           />
         </HeaderButtons>
       ),
+      headerLeft: () => (
+        <HeaderButtons HeaderButtonComponent={CustomHeaderBtn}>
+          <Item
+            title="menu"
+            iconName="ios-menu-outline"
+            onPress={() => navigation.toggleDrawer()}
+          />
+        </HeaderButtons>
+      ),
     });
   }, [navigation]);
 
