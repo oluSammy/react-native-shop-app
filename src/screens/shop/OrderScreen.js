@@ -8,6 +8,8 @@ import OrderItem from "../../components/shop/OrderItem";
 const OrderScreen = ({ navigation }) => {
   const orders = useSelector((state) => state.orders.orders);
 
+  console.log(orders);
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (

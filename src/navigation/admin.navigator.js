@@ -4,6 +4,7 @@ import Colors from "../constants/colors";
 
 import { Platform } from "react-native";
 import UserProductScreen from "../screens/user/UserProductScreen";
+import EditProductScreen from "../screens/user/EditProductScreen";
 
 const isAndroid = Platform.OS === "android";
 
@@ -28,7 +29,13 @@ const AdminNavigator = () => {
       <AdminStack.Screen
         name="User Product"
         component={UserProductScreen}
-        options={{ title: "Your Products", headerLeft: () => {} }}
+        options={{ title: "Your Products" }}
+      />
+
+      <AdminStack.Screen
+        name="EditProduct"
+        component={EditProductScreen}
+        options={{ title: "Edit Products" }}
       />
     </AdminStack.Navigator>
   );
