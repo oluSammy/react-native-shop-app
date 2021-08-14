@@ -80,7 +80,8 @@ const EditProductScreen = ({ route, navigation }) => {
           createProduct(
             formState.inputValues.title,
             formState.inputValues.description,
-            formState.inputValues.imageUrl + formState.inputValues.price
+            formState.inputValues.imageUrl,
+            +formState.inputValues.price
           )
         );
   };

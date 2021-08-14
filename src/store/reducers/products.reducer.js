@@ -4,6 +4,7 @@ import {
   DELETE_PRODUCT,
   CREATE_PRODUCT,
   UPDATE_PRODUCT,
+  SET_PRODUCTS,
 } from "../actions/products.actions";
 
 const initState = {
@@ -25,7 +26,7 @@ export default (state = initState, action) => {
       };
     case CREATE_PRODUCT:
       const newProduct = new Product(
-        new Date().toString(),
+        action.productData.id,
         "u1",
         action.productData.title,
         action.productData.imageUrl,
@@ -54,9 +55,6 @@ export default (state = initState, action) => {
       const updatedUserProducts = [...state.userProducts];
       updatedUserProducts[productIndex] = updatedProduct;
 
-      console.log("HELLO WORLD!!!", updatedProduct);
-      console.log("HELLO WORLD!!!", productIndex);
-
       const availableProductIndex = state.availableProducts.findIndex(
         (prod) => prod.id === action.id
       );
@@ -69,7 +67,13 @@ export default (state = initState, action) => {
         userProducts: updatedUserProducts,
         availableProducts: updatedAvailableProduct,
       };
-
+    case SET_PRODUCTS:
+      return {
+        availableProducts: action.products,
+        userProducts: action.products.filter(
+          (product) => product.ownerId === "u1"
+        ),
+      };
     default:
       return state;
   }
