@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet, FlatList } from "react-native";
+import { StyleSheet, FlatList } from "react-native";
 import { useSelector } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderBtn from "../../components/UI/HeaderButton";
